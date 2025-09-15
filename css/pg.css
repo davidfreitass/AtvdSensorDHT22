@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #91fafd;
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  color: #000000;
+}
+
+.card {
+  display: inline-block;
+  background: #fff;
+  padding: 90px 90px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  min-width: 150px;
+}
+
+.value {
+  font-size: 3em;
+  color: #007BFF;
+}
+
+.label {
+  font-size: 2em;
+  color: #555;
+}
