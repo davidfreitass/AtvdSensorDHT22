@@ -16,9 +16,11 @@ const db = getDatabase(app);
 
 const tempEl = document.getElementById("temp");
 const humEl = document.getElementById("hum");
+const sensEl = document.getElementById("sens");
 
 const tempRef = ref(db, "/sensores/dht22/temperatura");
 const humRef = ref(db, "/sensores/dht22/umidade");
+const sensRef = ref(db, "/sensores/dht22/sensacao");
 
 onValue(tempRef, (snapshot) => {
   tempEl.textContent = snapshot.val() ?? "--";
@@ -26,4 +28,8 @@ onValue(tempRef, (snapshot) => {
 
 onValue(humRef, (snapshot) => {
   humEl.textContent = snapshot.val() ?? "--";
+});
+
+onValue(sensRef, (snapshot) => {
+  sensEl.textContent = snapshot.val() ?? "--";
 });

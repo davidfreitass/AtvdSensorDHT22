@@ -46,9 +46,11 @@ void loop() {
 
   float temperatura = data.temperature;
   float umidade = data.humidity;
+  float sensacao = dhtSensor.computeHeatIndex(temperatura, umidade, false); // false = Celsius
 
   Serial.println("Temperatura: " + String(temperatura, 2) + " °C");
   Serial.println("Umidade: " + String(umidade, 1) + " %");
+  Serial.println("Sensação Térmica: " + String(sensacao, 2) + " °C");
   Serial.println("---");
 
   if (Firebase.ready()) {
@@ -63,8 +65,13 @@ void loop() {
     } else {
       Serial.println("Falha ao enviar umidade: " + fbdo.errorReason());
     }
+
+    if (Firebase.setFloat(fbdo, "/sensores/dht22/sensacao", sensacao)) {
+      Serial.println("Sensação enviada!");
+    } else {
+      Serial.println("Falha ao enviar sensação: " + fbdo.errorReason());
+    }
   }
 
   delay(5000);
 }
-
